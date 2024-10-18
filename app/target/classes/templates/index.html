@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inicio</title>
+</head>
+<body>
+    <h1>Bienvenido a la Aplicación de Gestión de Empleados</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/empleados}">Lista de Empleados</a></li>
+            <li><a th:href="@{/roles}">Lista de Roles</a></li>
+            <li><a th:href="@{/roles/nuevo}">Crear Nuevo Rol</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
