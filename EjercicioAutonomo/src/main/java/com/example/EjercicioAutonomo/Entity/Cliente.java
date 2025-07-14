@@ -3,14 +3,16 @@ package com.example.EjercicioAutonomo.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.query.sql.internal.ParameterRecognizerImpl;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
 @AllArgsConstructor
-@Table(name="Cliente")
+@NoArgsConstructor
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
@@ -20,20 +22,15 @@ public class Cliente {
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(length = 15)
+    @Column(length = 10)
     private String telefono;
 
     @Column(length = 100)
     private String email;
 
-    @Column(columnDefinition = "direccion")
-    private  String direccion;
+    @Column(length = 255 )
+    private String direccion;
 
-    @ManyToMany
-    @JoinTable(
-            name = "cliente_orden",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "orden_id")
-    )
-    private List<Orden_Compra> ordenes;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Orden_Compra> ordenes = new ArrayList<>();
 }

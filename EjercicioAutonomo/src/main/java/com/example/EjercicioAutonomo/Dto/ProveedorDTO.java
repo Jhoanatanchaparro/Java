@@ -1,23 +1,26 @@
 package com.example.EjercicioAutonomo.Dto;
 
+import com.example.EjercicioAutonomo.Entity.Producto;
+
+import java.util.List;
+
 public class ProveedorDTO {
 
     private Long id;
-
     private String nombre;
-
     private String telefono;
-
     private String email;
-
     private String direccion;
 
-    public ProveedorDTO(Long id, String nombre, String telefono, String email, String direccion) {
+    private List<Producto> productos;
+
+    public ProveedorDTO(Long id, String nombre, String telefono, String email, String direccion, List<Producto> productos) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
         this.direccion = direccion;
+        this.productos = productos;
     }
 
     public ProveedorDTO(){}
@@ -60,5 +63,13 @@ public class ProveedorDTO {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 }

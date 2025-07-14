@@ -61,6 +61,7 @@ public class CategoriaServicelmpl implements CategoriaService{
         categoriaDTO.setId(categoria.getId());
         categoriaDTO.setNombres(categoria.getNombres());
         categoriaDTO.setDescripcion(categoria.getDescripcion());
+        categoriaDTO.setProductos(categoria.getProductos());
         return categoriaDTO;
     }
 
@@ -69,9 +70,11 @@ public class CategoriaServicelmpl implements CategoriaService{
             return null;
         }
 
-        Categoria categoria = new Categoria(null,null,null,null);
+        Categoria categoria = new Categoria();
+        categoria.setId(categoria.getId());
         categoria.setNombres(categoriaDTO.getNombres());
         categoria.setDescripcion(categoriaDTO.getDescripcion());
+        categoria.setProductos(categoriaDTO.getProductos());
         return categoria;
     }
 }

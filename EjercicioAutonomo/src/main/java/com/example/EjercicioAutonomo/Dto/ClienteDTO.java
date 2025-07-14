@@ -1,16 +1,11 @@
 package com.example.EjercicioAutonomo.Dto;
 
 public class ClienteDTO {
-
     private Long id;
-
     private String nombre;
-
     private String telefono;
-
     private String email;
-
-    private  String direccion;
+    private String direccion;
 
     public ClienteDTO(Long id, String nombre, String telefono, String email, String direccion) {
         this.id = id;

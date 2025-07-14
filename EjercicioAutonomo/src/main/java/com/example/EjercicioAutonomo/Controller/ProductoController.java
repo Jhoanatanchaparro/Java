@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@Controller
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoController {

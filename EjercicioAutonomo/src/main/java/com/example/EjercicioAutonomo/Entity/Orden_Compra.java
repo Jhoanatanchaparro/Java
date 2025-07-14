@@ -1,8 +1,10 @@
 package com.example.EjercicioAutonomo.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,6 +13,7 @@ import java.util.List;
 @Data
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "Orden_Compra")
 public class Orden_Compra {
 
@@ -25,10 +28,13 @@ public class Orden_Compra {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal total;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ordenCompra")
     private List<Orden_Detalle> detalles;
 
-    @ManyToMany(mappedBy = "ordenes")
-    private List<Cliente> clientes;
-    
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
 }

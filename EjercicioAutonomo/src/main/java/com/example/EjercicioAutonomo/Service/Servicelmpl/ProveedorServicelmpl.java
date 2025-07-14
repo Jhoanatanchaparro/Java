@@ -41,6 +41,8 @@ public class ProveedorServicelmpl implements ProveedorService {
             Proveedor proveedor = (Proveedor) proveedorExistente.get();
             proveedor.setNombre(proveedorDTO.getNombre());
             proveedor.setEmail(proveedorDTO.getEmail());
+            proveedor.setTelefono(proveedorDTO.getTelefono());
+            proveedor.setDireccion(proveedorDTO.getDireccion());
 
             proveedor = proveedorRepository.save(proveedor);
             return convertirEntidadDTO(proveedor);
@@ -63,6 +65,7 @@ public class ProveedorServicelmpl implements ProveedorService {
         proveedorDTO.setTelefono(proveedor.getTelefono());
         proveedorDTO.setEmail(proveedor.getEmail());
         proveedorDTO.setDireccion(proveedor.getDireccion());
+        proveedorDTO.setProductos(proveedor.getProductos());
         return proveedorDTO;
     }
 
@@ -70,11 +73,13 @@ public class ProveedorServicelmpl implements ProveedorService {
         if (proveedorDTO == null){
             return null;
         }
-        Proveedor proveedor = new Proveedor(null, null, null, null,null, null);
+        Proveedor proveedor = new Proveedor();
+        proveedor.setId(proveedorDTO.getId());
         proveedor.setNombre(proveedorDTO.getNombre());
         proveedor.setTelefono(proveedorDTO.getTelefono());
         proveedor.setEmail(proveedorDTO.getEmail());
         proveedor.setDireccion(proveedorDTO.getDireccion());
+        proveedor.setProductos(proveedorDTO.getProductos());
         return proveedor;
     }
 }

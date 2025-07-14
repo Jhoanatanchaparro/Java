@@ -2,6 +2,7 @@ package com.example.EjercicioAutonomo.Service;
 
 import com.example.EjercicioAutonomo.Dto.ClienteDTO;
 import com.example.EjercicioAutonomo.Entity.Cliente;
+import com.example.EjercicioAutonomo.Repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public interface ClienteService {
+
 
     List<Cliente> mostrarCliente();
 
@@ -20,4 +22,5 @@ public interface ClienteService {
     ClienteDTO actualizarCliente(Long id, ClienteDTO clienteDTO);
 
     void eliminarCliente(Long id);
+
 }

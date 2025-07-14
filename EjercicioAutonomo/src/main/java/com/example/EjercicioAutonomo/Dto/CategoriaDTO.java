@@ -7,11 +7,8 @@ import java.util.List;
 public class CategoriaDTO {
 
     private Long id;
-
     private String nombres;
-
     private String descripcion;
-
     private List<Producto> productos;
 
     public CategoriaDTO(Long id, String nombres, String descripcion, List<Producto> productos) {

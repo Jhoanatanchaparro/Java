@@ -1,20 +1,24 @@
 package com.example.EjercicioAutonomo.Controller;
 
+import org.springframework.ui.Model;
 import com.example.EjercicioAutonomo.Dto.ClienteDTO;
 import com.example.EjercicioAutonomo.Entity.Cliente;
 import com.example.EjercicioAutonomo.Service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
-    private final ClienteService clienteService;
+    @Autowired
+    private ClienteService clienteService;
 
     @Autowired
     public ClienteController(ClienteService clienteService) {
@@ -50,4 +54,5 @@ public class ClienteController {
         clienteService.eliminarCliente(id);
         return ResponseEntity.noContent().build();
     }
+
 }

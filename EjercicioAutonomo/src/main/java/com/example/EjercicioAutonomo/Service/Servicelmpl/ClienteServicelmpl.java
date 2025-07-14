@@ -18,9 +18,9 @@ public class ClienteServicelmpl implements ClienteService {
 
     @Override
     public List<Cliente> mostrarCliente() {
-        return clienteRepository.findAll();
+        return clienteRepository.findAllWithOrdenes();
     }
-
+    
     @Override
     public Optional<Cliente> findById(Long id) {
         return clienteRepository.findById(id);
@@ -41,6 +41,7 @@ public class ClienteServicelmpl implements ClienteService {
            Cliente cliente = clienteExistente.get();
            cliente.setNombre(clienteDTO.getNombre());
            cliente.setEmail(clienteDTO.getEmail());
+           cliente.setTelefono(clienteDTO.getTelefono());
 
            cliente= clienteRepository.save(cliente);
            return convertirEntidadDTO(cliente);
@@ -62,24 +63,22 @@ public class ClienteServicelmpl implements ClienteService {
         ClienteDTO clienteDTO = new ClienteDTO();
         clienteDTO.setId(cliente.getId());
         clienteDTO.setNombre(cliente.getNombre());
+        clienteDTO.setTelefono(cliente.getTelefono());
         clienteDTO.setEmail(cliente.getEmail());
         clienteDTO.setDireccion(cliente.getDireccion());
-        clienteDTO.setTelefono(cliente.getTelefono());
         return clienteDTO;
     }
 
-    private  Cliente convertirDTOAEntidad(ClienteDTO clienteDTO){
-
+    private Cliente convertirDTOAEntidad(ClienteDTO clienteDTO){
         if (clienteDTO == null){
             return null;
         }
-        Cliente cliente = new Cliente(null, null, null,null,null, null);
+        Cliente cliente = new Cliente();
         cliente.setId(clienteDTO.getId());
         cliente.setNombre(clienteDTO.getNombre());
+        cliente.setTelefono(clienteDTO.getTelefono());
         cliente.setEmail(clienteDTO.getEmail());
         cliente.setDireccion(clienteDTO.getDireccion());
-        clienteDTO.setTelefono(cliente.getTelefono());
-
         return cliente;
     }
 }
