@@ -52,7 +52,6 @@ public class ClienteServicelmpl implements ClienteService {
     @Override
     public void eliminarCliente(Long id) {
         clienteRepository.deleteById(id);
-
     }
 
     private ClienteDTO convertirEntidadDTO(Cliente cliente){

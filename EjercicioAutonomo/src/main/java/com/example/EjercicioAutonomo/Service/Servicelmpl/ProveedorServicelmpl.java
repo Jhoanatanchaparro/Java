@@ -52,7 +52,7 @@ public class ProveedorServicelmpl implements ProveedorService {
 
     @Override
     public void eliminarProveedor(Long id) {
-
+        proveedorRepository.deleteById(id);
     }
 
     private ProveedorDTO convertirEntidadDTO(Proveedor proveedor) {
