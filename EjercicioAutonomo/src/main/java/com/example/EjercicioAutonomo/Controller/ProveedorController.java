@@ -21,6 +21,7 @@ public class ProveedorController {
     @Autowired
     private ProveedorService proveedorService;
 
+
     // Obtener todos los proveedores
     @GetMapping
     public ResponseEntity<List<Proveedor>> obtenerTodosLosProveedores() {
