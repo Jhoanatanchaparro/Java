@@ -28,6 +28,7 @@ public class ClienteFeignController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClienteResponse> obtenerClienteFeign(@PathVariable Long id) {
+        System.out.println(">>> [FeignController 8081] Redirigiendo a Feign...");
         return ResponseEntity.ok(clienteFeignService.findById(id));
     }
 

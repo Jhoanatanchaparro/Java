@@ -23,6 +23,7 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<List<ClienteResponse>> mostrarClientes() {
+        System.out.println(">>> [FeignController 8080] Redirigiendo a Feign...");
         List<ClienteResponse> clientes = clienteService.mostrarCliente();
         return ResponseEntity.ok(clientes);
     }
