@@ -6,9 +6,8 @@ import com.example.EjercicioAutonomo.Dto.Response.OrdenCompraResponse;
 import com.example.EjercicioAutonomo.Dto.Response.ProductoResponse;
 import com.example.EjercicioAutonomo.Service.ClienteService;
 import com.example.EjercicioAutonomo.Service.OrdenCompraService;
-import com.example.EjercicioAutonomo.Service.OrdenDetalleService;
 import com.example.EjercicioAutonomo.Service.ProductoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +18,18 @@ import java.util.List;
 @RequestMapping("/vista/compras")
 public class CompraViewController {
 
-    @Autowired
-    private OrdenCompraService ordenCompraService;
+    private final OrdenCompraService ordenCompraService;
+    private final ClienteService clienteService;
+    private final ProductoService productoService;
 
-    @Autowired
-    private ClienteService clienteService;
-
-    @Autowired
-    private OrdenDetalleService ordenDetalleService;
-
-    @Autowired
-    private ProductoService productoService;
+    public CompraViewController(
+            OrdenCompraService ordenCompraService,
+            @Qualifier("clienteServiceImpl") ClienteService clienteService,
+            ProductoService productoService) {
+        this.ordenCompraService = ordenCompraService;
+        this.clienteService = clienteService;
+        this.productoService = productoService;
+    }
 
     @GetMapping
     public String obtenerTodos(Model model) {
@@ -41,7 +41,7 @@ public class CompraViewController {
         model.addAttribute("clientes", clientes);
         model.addAttribute("compras", compras);
 
-        return "compras"; // Nombre de la plantilla Thymeleaf
+        return "compras";
     }
 
     @PostMapping("/guardar")
@@ -63,3 +63,5 @@ public class CompraViewController {
         return "redirect:/vista/compras";
     }
 }
+
+

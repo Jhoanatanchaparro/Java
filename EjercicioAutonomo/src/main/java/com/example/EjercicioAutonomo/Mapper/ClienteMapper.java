@@ -15,4 +15,7 @@ public interface ClienteMapper {
     List<ClienteResponse> toResponseList(List<Cliente> entities);
 
     void updateEntityFromRequest(ClienteRequest request, @MappingTarget Cliente cliente);
+
+    Cliente toEntityFromResponse(ClienteResponse response);
+    List<Cliente> toEntityListFromResponse(List<ClienteResponse> responses);
 }

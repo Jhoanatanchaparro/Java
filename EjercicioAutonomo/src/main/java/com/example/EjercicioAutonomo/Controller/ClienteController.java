@@ -4,6 +4,7 @@ import com.example.EjercicioAutonomo.Dto.Request.ClienteRequest;
 import com.example.EjercicioAutonomo.Dto.Response.ClienteResponse;
 import com.example.EjercicioAutonomo.Service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +17,14 @@ public class ClienteController {
     private final ClienteService clienteService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService) {
+    public ClienteController(@Qualifier("clienteServiceImpl") ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 
     @GetMapping
-    public List<ClienteResponse> mostrarClientes() {
-        return clienteService.mostrarCliente();
+    public ResponseEntity<List<ClienteResponse>> mostrarClientes() {
+        List<ClienteResponse> clientes = clienteService.mostrarCliente();
+        return ResponseEntity.ok(clientes);
     }
 
     @GetMapping("/{id}")
@@ -41,9 +43,7 @@ public class ClienteController {
     public ResponseEntity<ClienteResponse> actualizarCliente(@PathVariable Long id,
                                                              @RequestBody ClienteRequest clienteRequest) {
         ClienteResponse clienteActualizado = clienteService.actualizarCliente(id, clienteRequest);
-        return clienteActualizado != null
-                ? ResponseEntity.ok(clienteActualizado)
-                : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(clienteActualizado);
     }
 
     @DeleteMapping("/{id}")
@@ -52,3 +52,4 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 }
+

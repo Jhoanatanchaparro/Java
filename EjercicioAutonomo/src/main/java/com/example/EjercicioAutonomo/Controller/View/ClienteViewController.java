@@ -4,6 +4,7 @@ import com.example.EjercicioAutonomo.Dto.Request.ClienteRequest;
 import com.example.EjercicioAutonomo.Dto.Response.ClienteResponse;
 import com.example.EjercicioAutonomo.Service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,11 @@ import java.util.List;
 @RequestMapping("/vista/clientes")
 public class ClienteViewController {
 
-    @Autowired
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
+
+    public ClienteViewController(@Qualifier("clienteServiceImpl") ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
 
     @GetMapping
     public String mostrarClientes(Model model) {
@@ -42,4 +46,5 @@ public class ClienteViewController {
         return "redirect:/vista/clientes";
     }
 }
+
 
