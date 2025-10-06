@@ -21,8 +21,8 @@ public class ProveedorViewController {
     public String obtenerTodosLosProveedores(Model model){
         List<ProveedorResponse> proveedores = proveedorService.mostrarProveedor();
         model.addAttribute("proveedores", proveedores);
-        model.addAttribute("proveedorRequest", new ProveedorRequest()); // Para el formulario
-        return "proveedores"; // nombre de la vista Thymeleaf
+        model.addAttribute("proveedorRequest", new ProveedorRequest());
+        return "proveedores";
     }
 
     @PostMapping("/guardar")
